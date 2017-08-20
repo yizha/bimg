@@ -20,6 +20,15 @@ func (i *Image) Resize(width, height int) ([]byte, error) {
 	return i.Process(options)
 }
 
+// ResizeWithOptions resizes the image to fixed width and height
+// along with given options.
+func (i *Image) ResizeWithOptions(width, height int, options Options) ([]byte, error) {
+	options.Width = width
+	options.Height = height
+	options.Embed = true
+	return i.Process(options)
+}
+
 // ForceResize resizes with custom size (aspect ratio won't be maintained).
 func (i *Image) ForceResize(width, height int) ([]byte, error) {
 	options := Options{
